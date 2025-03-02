@@ -1,0 +1,108 @@
+﻿<Window x:Class="WpfAppOneToMany.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAppOneToMany"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Авторы">
+                <StackPanel>
+                    <Grid RenderTransformOrigin="0.5,0.5" Height="408">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.164"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60*"/>
+                            <RowDefinition Height="40*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="dataGridAuthors" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="dataGridAuthors_SelectedCellsChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ИД" Binding="{Binding Authors.Id}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="ФИО" Binding="{Binding Authors.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Страна" Binding="{Binding Authors.Country}"></DataGridTextColumn>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="ButtonDeleteCurrentAuthor" Width="150" Click="ButtonDeleteCurrentAuthor_Click">Удалить автора</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="textBoxAuthorId" HorizontalAlignment="Left" Margin="30,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" IsReadOnly="True"/>
+                        <TextBox x:Name="textBoxAuthorName" HorizontalAlignment="Left" Margin="150,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        <TextBox x:Name="textBoxAuthorCountry" HorizontalAlignment="Left" Margin="280,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+
+                        <Label Content="ИД" HorizontalAlignment="Left" Margin="30,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="ФИО" HorizontalAlignment="Left" Margin="150,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Страна" HorizontalAlignment="Left" Margin="280,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        
+
+                        <Button x:Name="buttonAddAuthor" Content="Добавить нового автора" HorizontalAlignment="Left" Margin="30,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonAddAuthor_Click" />
+                        <Button x:Name="buttonUpdateAuthor" Content="Обновить текущего автора" HorizontalAlignment="Left" Margin="190,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonUpdateAuthor_Click" />
+                        <Button x:Name="buttonClearAuthorFields" Content="Очистить поля автора" HorizontalAlignment="Left" Margin="360,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonClearAuthorFields_Click" />
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Книги">
+                <StackPanel>
+                    <Grid RenderTransformOrigin="0.5,0.5" Height="408">
+                        <Grid.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform Angle="0.164"/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </Grid.RenderTransform>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="60*"/>
+                            <RowDefinition Height="40*"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Name="dataGridBooks" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="dataGridBooks_SelectedCellsChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ИД" Binding="{Binding Books.Id}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Books.Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Books.Year}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="ИД Автора" Binding="{Binding Books.AuthorsId}"></DataGridTextColumn>
+
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Name="ButtonDeleteCurrentBook" Width="150" Click="ButtonDeleteCurrentBook_Click">Удалить кингу</Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="textBoxBookId" HorizontalAlignment="Left" Margin="30,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" IsReadOnly="True"/>
+                        <TextBox x:Name="textBoxBookTitle" HorizontalAlignment="Left" Margin="150,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        <TextBox x:Name="textBoxBookYear" HorizontalAlignment="Left" Margin="280,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        <TextBox x:Name="textBoxBookAuthorId" HorizontalAlignment="Left" Margin="410,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        
+                        <Label Content="ИД" HorizontalAlignment="Left" Margin="30,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="ФИО" HorizontalAlignment="Left" Margin="150,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Год Выпуска" HorizontalAlignment="Left" Margin="280,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="ИД Автора" HorizontalAlignment="Left" Margin="410,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+
+                        <Button x:Name="buttonAddBook" Content="Добавить новую книгу" HorizontalAlignment="Left" Margin="30,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonAddBook_Click" />
+                        <Button x:Name="buttonUpdateBook" Content="Обновить текущую книгу" HorizontalAlignment="Left" Margin="190,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonUpdateBook_Click" />
+                        <Button x:Name="buttonClearBookFields" Content="Очистить поля книги" HorizontalAlignment="Left" Margin="360,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonClearBookFields_Click" />
+                    </Grid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
