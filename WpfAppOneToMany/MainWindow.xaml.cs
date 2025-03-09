@@ -30,6 +30,9 @@ namespace WpfAppOneToMany
 
             dataGridAuthors.ItemsSource = db.Authors.ToList();
             dataGridBooks.ItemsSource = db.Books.ToList();
+            comboBoxAuthor.ItemsSource = db.Authors.ToList();
+            comboBoxAuthor.DisplayMemberPath = "Name";
+
         }
         private void dataGridAuthors_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
@@ -49,7 +52,7 @@ namespace WpfAppOneToMany
                 textBoxBookId.Text = selectedBook.Id.ToString();
                 textBoxBookTitle.Text = selectedBook.Title;
                 textBoxBookYear.Text = selectedBook.Year.ToString();
-                textBoxBookAuthorId.Text = selectedBook.AuthorId.ToString();
+                comboBoxAuthor.Text = selectedBook.AuthorId.ToString();
             }
         }
         private void buttonClearAuthorFields_Click(object sender, RoutedEventArgs e)
@@ -63,7 +66,7 @@ namespace WpfAppOneToMany
             textBoxBookId.Clear();
             textBoxBookTitle.Clear();
             textBoxBookYear.Clear();
-            textBoxBookAuthorId.Clear();
+            comboBoxAuthor.SelectedIndex = -1;
         }
         private void ButtonDeleteCurrentAuthor_Click(object sender, RoutedEventArgs e)
         {
@@ -77,6 +80,7 @@ namespace WpfAppOneToMany
 
                 dataGridAuthors.ItemsSource = null;
                 dataGridAuthors.ItemsSource = db.Authors.ToList();
+                
 
                 textBoxAuthorId.Clear();
                 textBoxAuthorName.Clear();
@@ -105,7 +109,7 @@ namespace WpfAppOneToMany
                 textBoxBookId.Clear();
                 textBoxBookTitle.Clear();
                 textBoxBookYear.Clear();
-                textBoxBookAuthorId.Clear();
+                comboBoxAuthor.SelectedIndex = -1;
 
                 MessageBox.Show("Успех. Книга удалена.");
             }
@@ -129,9 +133,9 @@ namespace WpfAppOneToMany
                 return;
             }
 
-            if (textBoxBookAuthorId.Text.Length == 0)
+            if (comboBoxAuthor.Text.Length == 0)
             {
-                MessageBox.Show("Ошибка. ИД Автора не заполнено.");
+                MessageBox.Show("Ошибка. Автор не выбран.");
                 return;
             }
 
@@ -139,7 +143,7 @@ namespace WpfAppOneToMany
             {
                 Title = textBoxBookTitle.Text,
                 Year = int.Parse(textBoxBookYear.Text),
-                AuthorId = int.Parse(textBoxAuthorId.Text)
+                Author = (Author)comboBoxAuthor.SelectedItem
             };
 
             db.Books.Add(newBook);
@@ -152,7 +156,7 @@ namespace WpfAppOneToMany
             textBoxBookId.Clear();
             textBoxBookTitle.Clear();
             textBoxBookYear.Clear();
-            textBoxBookAuthorId.Clear();
+            comboBoxAuthor.SelectedIndex = -1;
 
             MessageBox.Show("Успех. Книга успешно добавлена.");
         }
@@ -187,6 +191,7 @@ namespace WpfAppOneToMany
 
             dataGridAuthors.ItemsSource = null;
             dataGridAuthors.ItemsSource = db.Authors.ToList();
+           
 
             textBoxAuthorId.Clear();
             textBoxAuthorName.Clear();
@@ -214,9 +219,9 @@ namespace WpfAppOneToMany
                 MessageBox.Show("Ошибка. Год выпуска не заполнен.");
                 return;
             }
-            if (textBoxBookAuthorId.Text.Length == 0)
+            if (comboBoxAuthor.Text.Length == 0)
             {
-                MessageBox.Show("Ошибка. ИД Автора не заполнено.");
+                MessageBox.Show("Ошибка. Автор не выбран.");
                 return;
             }
 
@@ -226,7 +231,7 @@ namespace WpfAppOneToMany
 
             selectedBook.Title = textBoxBookTitle.Text;
             selectedBook.Year = int.Parse(textBoxBookYear.Text);
-            selectedBook.AuthorId = int.Parse(textBoxBookAuthorId.Text);
+            selectedBook.AuthorId = int.Parse(comboBoxAuthor.Text);
 
             db.SaveChanges();
 
@@ -236,7 +241,7 @@ namespace WpfAppOneToMany
             textBoxBookId.Clear();
             textBoxBookTitle.Clear();
             textBoxBookYear.Clear();
-            textBoxBookAuthorId.Clear();
+            comboBoxAuthor.SelectedIndex = -1;
 
             MessageBox.Show("Успех. Книга успешно обновлена.");
 
@@ -269,6 +274,7 @@ namespace WpfAppOneToMany
 
             dataGridAuthors.ItemsSource = null;
             dataGridAuthors.ItemsSource = db.Authors.ToList();
+           
 
             textBoxAuthorId.Clear();
             textBoxAuthorName.Clear();

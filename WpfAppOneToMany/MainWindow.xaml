@@ -25,9 +25,9 @@
                         </Grid.RowDefinitions>
                         <DataGrid Name="dataGridAuthors" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="dataGridAuthors_SelectedCellsChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ИД" Binding="{Binding Authors.Id}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="ФИО" Binding="{Binding Authors.Name}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Страна" Binding="{Binding Authors.Country}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="ИД" Binding="{Binding Id}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="ФИО" Binding="{Binding Name}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Страна" Binding="{Binding Country}"></DataGridTextColumn>
 
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
@@ -72,10 +72,10 @@
                         </Grid.RowDefinitions>
                         <DataGrid Name="dataGridBooks" ColumnWidth="*" AutoGenerateColumns="False" IsReadOnly="True" SelectedCellsChanged="dataGridBooks_SelectedCellsChanged">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="ИД" Binding="{Binding Books.Id}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Название" Binding="{Binding Books.Name}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Books.Year}"></DataGridTextColumn>
-                                <DataGridTextColumn Header="ИД Автора" Binding="{Binding Books.AuthorsId}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="ИД" Binding="{Binding Id}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Title}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Автор" Binding="{Binding Author.Name}"></DataGridTextColumn>
 
                                 <DataGridTemplateColumn>
                                     <DataGridTemplateColumn.CellTemplate>
@@ -90,12 +90,12 @@
                         <TextBox x:Name="textBoxBookId" HorizontalAlignment="Left" Margin="30,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100" IsReadOnly="True"/>
                         <TextBox x:Name="textBoxBookTitle" HorizontalAlignment="Left" Margin="150,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
                         <TextBox x:Name="textBoxBookYear" HorizontalAlignment="Left" Margin="280,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="textBoxBookAuthorId" HorizontalAlignment="Left" Margin="410,36,0,0" Grid.Row="1" TextWrapping="Wrap"  VerticalAlignment="Top" Width="100"/>
+                        <ComboBox x:Name="comboBoxAuthor" HorizontalAlignment="Left" Margin="410,34,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120"/>
                         
                         <Label Content="ИД" HorizontalAlignment="Left" Margin="30,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                        <Label Content="ФИО" HorizontalAlignment="Left" Margin="150,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                        <Label Content="Год Выпуска" HorizontalAlignment="Left" Margin="280,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-                        <Label Content="ИД Автора" HorizontalAlignment="Left" Margin="410,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Название" HorizontalAlignment="Left" Margin="150,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Год выпуска" HorizontalAlignment="Left" Margin="280,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                        <Label Content="Автор" HorizontalAlignment="Left" Margin="410,9,0,0" Grid.Row="1" VerticalAlignment="Top"/>
 
                         <Button x:Name="buttonAddBook" Content="Добавить новую книгу" HorizontalAlignment="Left" Margin="30,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonAddBook_Click" />
                         <Button x:Name="buttonUpdateBook" Content="Обновить текущую книгу" HorizontalAlignment="Left" Margin="190,74,0,0" Grid.Row="1" VerticalAlignment="Top" Click="buttonUpdateBook_Click" />
